@@ -11,8 +11,8 @@ import {
   Arg0,
   ContextValue,
   MConnectionExplorer,
-} from "@sqltools/types";
-import AbstractDriver from "@sqltools/base-driver";
+} from "./../types";
+import AbstractDriver from "./../base-driver";
 import { GoogleAuth, Impersonated } from "google-auth-library";
 import zipObject from "lodash/zipObject";
 import { v4 as generateId } from "uuid";
@@ -263,6 +263,8 @@ export default class PostgreSQL
             childType: ContextValue.FUNCTION,
           },
         ];
+      case ContextValue.DATABASE_MAP:
+        return this.getDatabaseMap(item as NSDatabase.IDatabase);
     }
     return [];
   }
@@ -337,4 +339,8 @@ export default class PostgreSQL
 
     return this.completionsCache;
   };
+
+  private async getDatabaseMap(parent: NSDatabase.IDatabase): Promise<NSDatabase.IDatabaseMap[]> {
+		return await this.queryResults(this.queries.fetchDatabaseMap(parent));
+	}
 }

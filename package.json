@@ -56,7 +56,8 @@
     "esbuild": "esbuild --platform=node --tsconfig=./tsconfig.json --external:vscode --log-level=error --color=true --format=cjs",
     "compile:ext": "yarn run esbuild --bundle ./src/extension.ts --outfile=./out/extension.js --target=es2017 --define:process.env.PRODUCT=\"'ext'\"",
     "compile:ls": "yarn run esbuild --bundle ./src/ls/plugin.ts --outfile=./out/ls/plugin.js --target=es2015 --define:process.env.PRODUCT=\"'ls'\"",
-    "compile": "tsc -p ./",
+    "compile": "tsc -p ./ && npm run copy-types",
+    "copy-types": "ncp src/types out/types",
     "watch": "tsc -watch -p ./"
   },
   "dependencies": {
@@ -77,9 +78,9 @@
     "@types/vscode": "^1.42.0",
     "@vscode/vsce": "^2.22.0",
     "esbuild": "^0.19.10",
+    "ncp": "^2.0.0",
     "prettier": "^3.1.1",
     "rimraf": "^5.0.5",
     "typescript": "^5.3.3"
-  },
-  "packageManager": "yarn@4.0.2"
+  }
 }

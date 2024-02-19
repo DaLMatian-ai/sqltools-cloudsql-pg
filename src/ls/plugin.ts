@@ -1,4 +1,4 @@
-import { ILanguageServerPlugin } from "@sqltools/types";
+import { ILanguageServerPlugin } from "./../types";
 import PostgreSQL from "./driver";
 import { DRIVER_ALIASES } from "./../constants";
 

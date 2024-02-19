@@ -1,4 +1,4 @@
-import { IDriverAlias } from "@sqltools/types";
+import { IDriverAlias } from "./types";
 
 export const DRIVER_ALIASES: IDriverAlias[] = [
   {

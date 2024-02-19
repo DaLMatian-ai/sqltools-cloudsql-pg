@@ -2,7 +2,7 @@ import {
   IExtension,
   IExtensionPlugin,
   IDriverExtensionApi,
-} from "@sqltools/types";
+} from "./types";
 import { ExtensionContext, extensions, authentication } from "vscode";
 import { DRIVER_ALIASES } from "./constants";
 const { publisher, name } = require("../package.json");

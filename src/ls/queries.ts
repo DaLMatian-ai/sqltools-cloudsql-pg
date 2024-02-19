@@ -1,6 +1,6 @@
-import queryFactory from "@sqltools/base-driver/dist/lib/factory";
+import queryFactory from "./../base-driver/lib/factory";
 import escapeTableName from "../escape-table";
-import { IBaseQueries, ContextValue } from "@sqltools/types";
+import { IBaseQueries, ContextValue } from "./../types";
 
 const describeTable: IBaseQueries["describeTable"] = queryFactory`
 SELECT * FROM INFORMATION_SCHEMA.COLUMNS
@@ -210,6 +210,12 @@ WHERE
     )
   );
 `;
+const fetchDatabaseMap: IBaseQueries['fetchDatabaseMap'] = queryFactory`
+SELECT table_schema, table_name, column_name
+FROM information_schema.columns
+WHERE LOWER(table_schema) != 'information_schema'
+ORDER BY table_schema, table_name, column_name;
+`;
 const fetchDatabases: IBaseQueries["fetchDatabases"] = queryFactory`
 SELECT
   db.*,
@@ -249,6 +255,7 @@ export default {
   fetchTables,
   fetchViews,
   fetchFunctions,
+  fetchDatabaseMap,
   fetchDatabases,
   fetchSchemas,
   fetchMaterializedViews,

@@ -1,4 +1,4 @@
-import { NSDatabase } from "@sqltools/types";
+import { NSDatabase } from "./types";
 
 export const pgCheckEscape = (w: string | { label: string }) =>
   /[^a-z0-9_]/.test((<any>w).label || w)
