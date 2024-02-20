@@ -211,7 +211,7 @@ WHERE
   );
 `;
 const fetchDatabaseMap: IBaseQueries['fetchDatabaseMap'] = queryFactory`
-SELECT table_schema, table_name, column_name
+SELECT table_schema AS "TABLE_SCHEMA", table_name AS "TABLE_NAME", column_name AS "COLUMN_NAME"
 FROM information_schema.columns
 WHERE LOWER(table_schema) != 'information_schema'
 ORDER BY table_schema, table_name, column_name;
