@@ -213,7 +213,8 @@ WHERE
 const fetchDatabaseMap: IBaseQueries['fetchDatabaseMap'] = queryFactory`
 SELECT table_schema AS "TABLE_SCHEMA", table_name AS "TABLE_NAME", column_name AS "COLUMN_NAME"
 FROM information_schema.columns
-WHERE LOWER(table_schema) != 'information_schema'
+WHERE LOWER(table_schema) NOT IN ('pg_catalog', 'pg_toast', 'pg_stat', 'pg_policy', 'pg_am', 'pg_largeobject', 'pg_xact', 'pg_subscription', 'pg_init_privs', 'pg_tablespace')
+  AND LOWER(table_schema) != 'information_schema'
 ORDER BY table_schema, table_name, column_name;
 `;
 const fetchDatabases: IBaseQueries["fetchDatabases"] = queryFactory`
