@@ -2,7 +2,7 @@
 .vscode
 yarn-error.log
 node_modules
-out
+# out
 .DS_Store
 *.vsix
 .yarn/cache
